@@ -1,0 +1,175 @@
+        -:    0:Source:kmp.cpp
+        -:    0:Graph:serial-kmp.gcno
+        -:    0:Data:serial-kmp.gcda
+        -:    0:Runs:1
+        -:    1:#include <bits/stdc++.h>
+        -:    2:// #include <omp.h>
+        -:    3:using namespace std;
+        -:    4:
+function _Z10computeLPSNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiRSt6vectorIiSaIiEE called 1 returned 100% blocks executed 100%
+        1:    5:void computeLPS(string pat, int m, vector<int> &lps)
+        -:    6:{
+        1:    7:	int len = 0, i = 1;
+        1:    8:	lps[0] = 0;
+call    0 returned 1
+        9:    9:	while (i < m)
+branch  0 taken 8
+branch  1 taken 1 (fallthrough)
+        -:   10:	{
+        8:   11:		if (pat[i] == pat[len])
+call    0 returned 8
+call    1 returned 8
+branch  2 taken 1 (fallthrough)
+branch  3 taken 7
+        -:   12:		{
+        1:   13:			lps[i] = len + 1;
+call    0 returned 1
+        1:   14:			len++;
+        1:   15:			i++;
+        -:   16:		}
+        -:   17:		else
+        -:   18:		{
+        7:   19:			if (len != 0)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 6
+        1:   20:				len = lps[len - 1];
+call    0 returned 1
+        -:   21:			else
+        -:   22:			{
+        6:   23:				lps[i] = 0;
+call    0 returned 6
+        6:   24:				i++;
+        -:   25:			}
+        -:   26:		}
+        -:   27:	}
+        1:   28:}
+        -:   29:
+function _Z9kmpSearchNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES4_ called 1 returned 100% blocks executed 70%
+        1:   30:void kmpSearch(string txt, string pat)
+        -:   31:{
+        1:   32:	int n = txt.size(), m = pat.size();
+call    0 returned 1
+call    1 returned 1
+        1:   33:	vector<int> lps(m, 0); //longest proper prefix suffix
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 returned 1
+        1:   34:	computeLPS(pat, m, lps);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1
+call    7 never executed
+        1:   35:	int i = 0, j = 0;
+        1:   36:	int flag = 0;
+124973243:   37:	while (i < n)
+branch  0 taken 124973242
+branch  1 taken 1 (fallthrough)
+        -:   38:	{
+124973242:   39:		if (txt[i] == pat[j])
+call    0 returned 124973242
+branch  1 taken 124973242 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 124973242
+branch  4 taken 124973242 (fallthrough)
+branch  5 taken 0 (throw)
+branch  6 taken 33236623 (fallthrough)
+branch  7 taken 91736619
+        -:   40:		{
+ 33236623:   41:			i++;
+ 33236623:   42:			j++;
+        -:   43:		}
+        -:   44:		else
+        -:   45:		{
+ 91736619:   46:			if (j != 0)
+branch  0 taken 24973242 (fallthrough)
+branch  1 taken 66763377
+ 24973242:   47:				j = lps[j - 1];
+call    0 returned 24973242
+        -:   48:			else
+ 66763377:   49:				i++;
+        -:   50:		}
+124973242:   51:		if (j == m)
+branch  0 taken 1600 (fallthrough)
+branch  1 taken 124971642
+        -:   52:		{
+     1600:   53:			flag = 1;
+     1600:   54:			cout << "Pattern found at Index : " << i - j << endl;
+call    0 returned 1600
+branch  1 taken 1600 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1600
+branch  4 taken 1600 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1600
+branch  7 taken 1600 (fallthrough)
+branch  8 taken 0 (throw)
+     1600:   55:			j = lps[j - 1];
+call    0 returned 1600
+        -:   56:		}
+        -:   57:	}
+        1:   58:	if (flag == 0)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   59:		cout << "\nPattern Not found" << endl;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+        1:   60:}
+call    0 returned 1
+call    1 never executed
+        -:   61:
+function main called 1 returned 100% blocks executed 62%
+        1:   62:int main()
+        -:   63:{
+        1:   64:	string txt, pat;
+call    0 returned 1
+call    1 returned 1
+        1:   65:	cout << "Enter Pattern to be searched : ";
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   66:	cin >> pat;
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   67:	freopen("dna.txt", "r", stdin);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   68:	// cout << "Enter Text : ";
+        1:   69:	cin >> txt;
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   70:	// double start = omp_get_wtime();
+        1:   71:	kmpSearch(txt, pat);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 1
+call   10 returned 1
+call   11 never executed
+call   12 never executed
+        -:   72:	// double end = omp_get_wtime();
+        -:   73:	// cout << "Time : " << end - start << endl;
+        1:   74:	return 0;
+        1:   75:}
+call    0 returned 1
+call    1 returned 1
+call    2 never executed
+call    3 never executed
